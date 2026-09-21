@@ -1,119 +1,125 @@
-using UnityEngine;
-using System.Collections.Generic;
+using UnityEngine;using System.Collections.Generic;using System.Collections;
 
-namespace Assignment
-{
-    public class Lecture : MonoBehaviour
-    {
-        public void Start()
-        {
-            // LCT01_SyntaxList();
-            // LCT02_SyntaxLinkedList();
-            // LCT03_SyntaxHashTable();
-            // LCT04_SyntaxDictionary();
-        }
+namespace Assignment{public class Lecture : MonoBehaviour{public void Start(){// LCT01_SyntaxList();//LCT02_SyntaxLinkedList();//LCT03_SyntaxHashTable();LCT04_SyntaxDictionary();
 
-        #region Lecture
+        }#region Lecture
 
-        public void LCT01_SyntaxList()
-        {
-            throw new System.NotImplementedException();
-        }
 
-        public void LCT02_SyntaxLinkedList()
-        {
-            // string[] playerName = new string[1000];
+        public void LCT01_SyntaxList(){throw new System.NotImplementedException();
 
-            // ->null
-            LinkedList<string> linkedlist = new LinkedList<string>();
+        }public void LCT02_SyntaxLinkedList(){LinkedList<string> linkedlist = new LinkedList<string>();
 
-            // [Node 1] -> null
-            linkedlist.AddLast("Node 1");
-            // [Node 1] -> [Node 2] -> null
-            linkedlist.AddLast("Node 2");
-            // [Node 0] -> [Node 1] -> [Node 2] -> null
-            linkedlist.AddFirst("Node 0");
-            
+
+            //[Node 1]linkedlist.AddLast("Node 1");
+
+
+            //[Node 1] <- [Node 2]linkedlist.AddLast("Node 2");
+
+
+            //[Node 0] <- [Node 1] <- [Node 2]linkedlist.AddFirst("Node 0");
+
+
+            LinkedListNode<string> firstNode = linkedlist.First;
+
+            Debug.Log("first : " + firstNode.Value);
+
+
+            LinkedListNode<string> lastNode = linkedlist.Last;
+
+            Debug.Log("last : " + lastNode.Value);
+
+
+            Debug.Log("firstNode.Next :" + firstNode.Next.Value);
+
+            Debug.Log("firstNode.Next.Next :" + firstNode.Next.Next.Value);
+
+
+            Debug.Log("lastNode.Previous :" + lastNode.Previous.Value);
+
+            Debug.Log("lastNode.Previous.Previous :" + lastNode.Previous.Previous.Value);
+
+
+            //[Node 0] <- <previous>-[Node 1]-<next>-[Node 2]//null <-<previous>-[Node 0]-<next>-[Node 1]if (firstNode.Previous == null) Debug.Log("firstNode.Previous == null");
+
+            if (firstNode.Next == null) Debug.Log("firstNode.Next == null");
+
+
+            //[NOde 0]<-[*Node 0.5]<-[Node 1]<-[Node 2]linkedlist.AddAfter(firstNode,"Node 0.5");
+
+
+            //[NOde 0]<-[*Node 0.5]<-[Node 1]<-[Node 1.5]<-[Node 2]linkedlist.AddBefore(lastNode,"Node 1.5");
+
+
             LinkedListNode<string> node1 = linkedlist.Find("Node 1");
-            Debug.Log(node1.Value);
-            Debug.Log(node1.Next.Value);
-            // Debug.Log(node1.Next.Next.Value);
-            Debug.Log(node1.Previous.Value);
 
-            var firstNode = linkedlist.First;
-            var lastNode = linkedlist.Last;
-            Debug.Log(firstNode.Previous);
-            Debug.Log(lastNode.Next);
 
-            // [Node 0] -> [Node 1] -> [Node 1.5] -> [Node 2] -> null
-            linkedlist.AddAfter(node1, "Node 1.5");
-            // [Node 0] -> [Node 0.5] -> [Node 1] -> [Node 1.5] -> [Node 2] -> null
-            linkedlist.AddBefore(node1, "Node 0.5");
+            linkedlist.Remove("Node 1");
 
-            // [Node 0.5] -> [Node 1] -> [Node 1.5] -> [Node 2] -> null
-            linkedlist.RemoveFirst();
-            // [Node 0.5] -> [Node 1] -> [Node 1.5] -> null
+            linkedlist.Remove(node1);
+
             linkedlist.RemoveLast();
-            // [Node 0.5] -> [Node 1] -> null
-            linkedlist.Remove("Node 1.5");
 
-            Debug.Log("~~~~");
-            foreach (var item in linkedlist)
-            {
-                Debug.Log(item);
-            }
-        }
+            linkedlist.RemoveFirst();
 
-        public void LCT03_SyntaxHashTable()
-        {
-            throw new System.NotImplementedException();
-        }
 
-        public void LCT04_SyntaxDictionary()
-        {
-           Dictionary<string, int> inv = new Dictionary<string, int>();
-           //var inv = new Dictionary<string, int>();
- 
-           inv.Add("Potion", 5);
-           inv.Add("Banana", 1);
-           inv.Add("Apple", 10);
- 
-           // Potion: 5
-           // Banana: 1
-           // Apple: 10
- 
-           // Potion: 5
-           // Banana: 1
-           // Apple: 0
-           inv["Apple"] = 0;
- 
-           // Potion: 5
-           // Banana: 1
-           // Apple: 0
-           // Apple1: 1
-           inv["Apple1"] = 1;
- 
-           int potion = inv["Potion"];
-           Debug.Log("potion: " + potion);
- 
-           //int apple2 = inv["Apple2"];
-           //Debug.Log("apple2: " + apple2);
- 
-           bool hasPotion = inv.ContainsKey("Potion");
-           Debug.Log("hasPotion: " + hasPotion);
- 
-           inv.Remove("Banana");
- 
-           foreach (KeyValuePair<string, int> kvp in inv)
-           {
-               var key = kvp.Key;
-               var value = kvp.Value;
-               Debug.Log($"{key} => {value}");
-               //inv.Add("mm", 1);
-           }
- 
-           inv.Clear();        }
+            linkedlist.Clear();
 
-        #endregion
-    }
-}
+
+        }public void LCT03_SyntaxHashTable(){Hashtable table = new Hashtable();
+
+            table.Add("Potion",1);
+
+            table.Add(true, "");
+
+            table.Add(0,0);
+
+            table[true] = 1;
+
+        }public void LCT04_SyntaxDictionary(){Dictionary<string, int> inv = new Dictionary<string, int>();
+
+            var inv2 = new Dictionary<string, int>();
+
+
+            //"Potion" : 1inv.Add("Potion", 1);
+
+
+            //"Potion" : 1//"Apple" : 10inv.Add("Apple", 10);
+
+
+            //"Potion" : 1//"Apple" : 10//"Banana" : 5inv["Banana"] = 5;
+
+
+            //"Potion" : 10//"Apple" : 10//"Banana" : 5inv["Potion"] = 10;
+
+
+            var pickupItem = "Sword";
+
+            //"Potion" : 10//"Apple" : 10//"Banana" : 5//"Sword" : 1inv[pickupItem] = 1;
+
+
+            foreach (KeyValuePair<string , int> pair in inv) //in () put "var pair in inv" dai same na{string key = pair.Key;
+
+                int value = pair.Value;
+
+                Debug.Log($"Key : {key} Value : {value}");
+
+            }var appleExists = inv.ContainsKey("Apple");
+
+            Debug.Log(appleExists);
+
+
+            var keyExists = inv.ContainsKey("Key");
+
+            Debug.Log(keyExists);
+
+
+            inv.Remove("Apple");
+
+
+            foreach (var pair in inv){string key = pair.Key;
+
+                int value = pair.Value;
+
+                Debug.Log($"Key : {key} Value : {value}");
+
+            }}#endregion}}
