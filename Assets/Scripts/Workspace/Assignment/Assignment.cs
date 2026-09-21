@@ -16,7 +16,7 @@ namespace Assignment
             //AS06_MergeDictionaries();
             //AS07_RemoveDuplicatesFromLinkedList();
             //AS08_TopFrequentNumber();
-            AS09_PlayerInventory();
+            //AS09_PlayerInventory();
             //AS10_GameEventQueue();
             //AS11_PlayerStatsTracker();
         }
